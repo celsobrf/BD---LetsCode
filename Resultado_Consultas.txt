@@ -1,0 +1,165 @@
+C:\Program Files\PostgreSQL\14\bin>psql -U postgres
+Password for user postgres:
+psql (14.2)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \c escola
+You are now connected to database "escola" as user "postgres".
+escola=# SELECT ALUNO.*
+escola-# FROM ALUNO JOIN MATRICULA ON (ALUNO.CPF = MATRICULA.CPF_ALUNO)
+escola-# ORDER BY ALUNO.Nome;
+     cpf     |                  nome                  |       endereco       |    telefone    | data_nasc
+-------------+----------------------------------------+----------------------+----------------+------------
+ 70714085804 | Adriana Yamashita                      | SÒo Paulo - SP       | 11996081414    | 2018-04-08
+ 37764019585 | Adriano Andrade Carvalho               | Aracaju - SE         | 79991538866    | 2002-03-28
+ 78975824853 | Adriano Salgado                        | Campinas - SP        | 19992898586    | 1975-09-14
+ 96526812708 | Alecsandro Santos da Silva             | Rio de Janeiro - RJ  | 21987592970    | 2017-03-30
+ 74719958826 | Ariel Villa                            | Campinas - SP        | 19981126712    | 1972-05-14
+ 98940235843 | Carolina Costa Gois                    | SÒo Paulo - SP       | 11996897727    | 1986-06-15
+ 18520306586 | Celso Boulhosa Romero Filho            | Salvador - BA        | 71992705000    | 1981-06-03
+ 18520306586 | Celso Boulhosa Romero Filho            | Salvador - BA        | 71992705000    | 1981-06-03
+ 01766988849 | Edson Roberto Sega                     | Campinas - SP        | 19997698800    | 1980-01-01
+ 45188222000 | Eduardo Herrmann de Freitas            | Porto Alegre - RS    | 51982211441    | 1999-09-29
+ 08368665841 | Flavio Sampaio Dantas                  | SÒo Paulo - SP       | 11976375466    | 1943-10-06
+ 45033085808 | Giovani Zanim                          | SÒo Paulo - SP       | 11981777074    | 1994-04-04
+ 78790352491 | Hender Larry Prato Caballero           | Recife - PE          | 81996590802    | 1997-12-31
+ 87845430005 | Jeferson Barp                          | Porto Alegre - RS    | 51992463346    | 1964-01-21
+ 99113720309 | Jonab da Cruz Fernandes                | Fortaleza - CE       | 85992706976    | 1964-08-12
+ 58399329819 | Juliana Trench Abumansur               | RibeirÒo Preto - SP  | 16988081881    | 1936-03-04
+ 14088818881 | Marcelo Batista de Oliveira            | RibeirÒo Branco - SP | 15991500484    | 1954-05-10
+ 85622189870 | Marcelo de Souza Moraes                | Campinas - SP        | 19997993483    | 2000-03-03
+ 76175945697 | Orlando Abreu Gomes                    | Belo Horizonte - MG  | 31999499723    | 1954-07-22
+ 78545111878 | Pedro Guilherme Coutinho Jafet         | SÒo Paulo - SP       | 11991374069    | 1968-08-24
+ 49077722700 | Ricardo Luz Alves                      | Rio de Janeiro - RJ  | 21991566801    | 1966-08-19
+ 50017093422 | Roberto Oliveira de Azevedo Maia Filho | Recife - PE          | 81996744434    | 1991-09-12
+ 82812529873 | Roddy Elky Ramos Gonzßles              | Campinas - SP        | 19991748770    | 1989-12-10
+ 74542329496 | Rodrigo Agra Coutelo                   | Recife - PE          | 81996476300    | 2003-08-12
+ 32751921400 | Ronaldo Gomes Bandim                   | Recife - PE          | 81987886945    | 1978-08-24
+ 19716782870 | Sergio Narimatsu                       | SÒo Paulo - SP       | 11981964198    | 1979-10-20
+ 75217989882 | Wagner Monticeli Ponciano              | Taubate - SP         | 12991529106    | 1966-01-26
+(27 rows)
+
+                                   ^
+escola=# SELECT CURSO.*, DISCIPLINA.Nome as Disciplina
+escola-# FROM CURSO JOIN COMPOE ON (CURSO.ID = COMPOE.ID_Curso)
+escola-#            JOIN DISCIPLINA ON (DISCIPLINA.ID = COMPOE.ID_Disc)
+escola-# ORDER BY CURSO.Nome;
+ id  |      nome      | descricao | id_dpto |           disciplina
+-----+----------------+-----------+---------+---------------------------------
+ CDA | Python & Dados |           | PRO     | L¾gica de ProgramaþÒo
+ CDA | Python & Dados |           | PRO     | ProgramaþÒo Orientada a Objetos
+ CDA | Python & Dados |           | PRO     | Estrutura de Dados
+ CDA | Python & Dados |           | PRO     | Banco de Dados
+ DFS | Web Full Stack |           | PRO     | L¾gica de ProgramaþÒo
+ DFS | Web Full Stack |           | PRO     | ProgramaþÒo Orientada a Objetos
+ DFS | Web Full Stack |           | PRO     | TÚcnicas de ProgramaþÒo
+ DFS | Web Full Stack |           | PRO     | ProgramaþÒo Web
+ DFS | Web Full Stack |           | PRO     | Testes Automatizados
+ DFS | Web Full Stack |           | PRO     | Banco de Dados
+(10 rows)
+
+
+escola=# SELECT ALUNO.Nome AS ALUNO, DISCIPLINA.Nome AS DISCIPLINA
+escola-# FROM ALUNO JOIN CURSA ON (ALUNO.CPF = CURSA.CPF_Aluno)
+escola-#            JOIN DISCIPLINA ON (DISCIPLINA.ID = CURSA.ID_Disc)
+escola-# ORDER BY ALUNO.Nome;
+                 aluno                  |           disciplina
+----------------------------------------+---------------------------------
+ Adriana Yamashita                      | Estrutura de Dados
+ Adriano Andrade Carvalho               | EstatÝsticas
+ Adriano Salgado                        | L¾gica de ProgramaþÒo
+ Alecsandro Santos da Silva             | ProgramaþÒo Orientada a Objetos
+ Ariel Villa                            | Estrutura de Dados
+ Carolina Costa Gois                    | ProgramaþÒo Orientada a Objetos
+ Celso Boulhosa Romero Filho            | Banco de Dados
+ Edson Roberto Sega                     | Banco de Dados
+ Eduardo Herrmann de Freitas            | EstatÝsticas
+ Flavio Sampaio Dantas                  | Banco de Dados
+ Giovani Zanim                          | EstatÝsticas
+ Hender Larry Prato Caballero           | L¾gica de ProgramaþÒo
+ Jeferson Barp                          | ProgramaþÒo Orientada a Objetos
+ Jonab da Cruz Fernandes                | ProgramaþÒo Web
+ Juliana Trench Abumansur               | Estrutura de Dados
+ Marcelo Batista de Oliveira            | Banco de Dados
+ Marcelo de Souza Moraes                | ProgramaþÒo Orientada a Objetos
+ Orlando Abreu Gomes                    | L¾gica de ProgramaþÒo
+ Pedro Guilherme Coutinho Jafet         | L¾gica de ProgramaþÒo
+ Ricardo Luz Alves                      | EstatÝsticas
+ Roberto Oliveira de Azevedo Maia Filho | Estrutura de Dados
+ Roddy Elky Ramos Gonzßles              | ProgramaþÒo Orientada a Objetos
+ Rodrigo Agra Coutelo                   | Estrutura de Dados
+ Ronaldo Gomes Bandim                   | EstatÝsticas
+ Sergio Narimatsu                       | Banco de Dados
+ Wagner Monticeli Ponciano              | L¾gica de ProgramaþÒo
+(26 rows)
+
+
+escola=# SELECT PROFESSOR.Nome AS PROFESSOR, DISCIPLINA.Nome AS DISCIPLINA
+escola-# FROM PROFESSOR JOIN DISCIPLINA ON (DISCIPLINA.Matricula_Prof = PROFESSOR.Matricula)
+escola-# ORDER BY PROFESSOR.Nome;
+       professor        |           disciplina
+------------------------+---------------------------------
+ Brian                  | Banco de Dados
+ Matheus Pavani         | Machine Learning
+ Matheus Pavani         | Estrutura de Dados
+ Octßvio Loures Bellozi | TÚcnicas de ProgramaþÒo
+ Octßvio Loures Bellozi | ProgramaþÒo Web
+ Octßvio Loures Bellozi | L¾gica de ProgramaþÒo
+ William Teixeira       | ProgramaþÒo Orientada a Objetos
+ William Teixeira       | Testes Automatizados
+ William Teixeira       | EstatÝsticas
+(9 rows)
+
+
+escola=# SELECT DISCIPLINA.Nome AS DISCIPLINA, PRE.Nome AS PRE_REQUISITO
+escola-# FROM DISCIPLINA LEFT JOIN PRE_REQ ON (DISCIPLINA.ID = PRE_REQ.ID_Disc)
+escola-#                 LEFT JOIN DISCIPLINA PRE ON (PRE.ID = PRE_REQ.ID_Disc_Dependencia)
+escola-# ORDER BY DISCIPLINA.Nome;
+           disciplina            |          pre_requisito
+---------------------------------+---------------------------------
+ Banco de Dados                  |
+ EstatÝsticas                    |
+ Estrutura de Dados              | TÚcnicas de ProgramaþÒo
+ Estrutura de Dados              | L¾gica de ProgramaþÒo
+ L¾gica de ProgramaþÒo           |
+ Machine Learning                | ProgramaþÒo Orientada a Objetos
+ Machine Learning                | EstatÝsticas
+ Machine Learning                | L¾gica de ProgramaþÒo
+ Machine Learning                | TÚcnicas de ProgramaþÒo
+ ProgramaþÒo Orientada a Objetos | L¾gica de ProgramaþÒo
+ ProgramaþÒo Web                 | L¾gica de ProgramaþÒo
+ ProgramaþÒo Web                 | ProgramaþÒo Orientada a Objetos
+ TÚcnicas de ProgramaþÒo         |
+ Testes Automatizados            |
+(14 rows)
+
+                                    ^
+escola=# SELECT CURSO.Nome, AVG(AGE(ALUNO.Data_Nasc))
+escola-# FROM CURSO JOIN MATRICULA ON (CURSO.ID = MATRICULA.ID_Curso)
+escola-#            JOIN ALUNO ON (ALUNO.CPF = MATRICULA.CPF_Aluno)
+escola-# GROUP BY CURSO.Nome;
+      nome      |                  avg
+----------------+---------------------------------------
+ Python & Dados | 33 years 5 mons 11 days 21:19:59.9712
+ Web Front End  | 47 years 6 mons 30 days
+ Web Full Stack | 44 years 7 mons 20 days 16:00:00.0288
+(3 rows)
+
+
+escola=# SELECT DEPARTAMENTO.Nome AS DEPARTAMENTO, CURSO.NOME AS CURSO
+escola-# FROM DEPARTAMENTO LEFT JOIN CURSO ON (DEPARTAMENTO.ID = CURSO.ID_Dpto)
+escola-# ORDER BY DEPARTAMENTO.Nome;
+  departamento  |     curso
+----------------+----------------
+ Banco de Dados |
+ Matemßtica     |
+ ProgramaþÒo    | Python & Dados
+ ProgramaþÒo    | Web Front End
+ ProgramaþÒo    | Web Full Stack
+(5 rows)
+
+
+escola=#

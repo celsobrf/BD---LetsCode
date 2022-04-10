@@ -1,0 +1,13 @@
+C:\Program Files\PostgreSQL\14\bin
+
+SET PGCLIENTENCODING=utf-8
+chcp 65001
+
+psql -U postgres -f "C:\Users\celso\Desktop\escola.sql"
+
+
+
+___________________
+
+
+psql -h "database-1.czofsdszso9t.us-east-1.rds.amazonaws.com" -p 5432 -U postgres
